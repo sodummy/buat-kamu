@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Untuk Kamu</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Poppins:wght@300;400;500;600&family=Lora:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Floating hearts background -->
+    <div class="floating-hearts" id="floatingHearts"></div>
+    
+    <!-- 1️⃣ HALAMAN AWAL - UCAPAN -->
+    <section class="landing" id="landing">
+        <div class="landing-content">
+            <h1 class="landing-title">aku bikin ini sambil deg-degan tauu, jadi tolong jangan ketawa yaa hehehhehehe</h1>
+            <!-- TOMBOL UNTUK LANJUT KE HALAMAN PIN -->
+            <button class="landing-btn" id="openBtn" onclick="showPinInput()">buka yaa sayangg</button>
+        </div>
+    </section>
+
+    <!-- 2️⃣ HALAMAN KEDUA - ISI PIN -->
+    <section class="pin-page" id="pinPage" style="display: none;">
+        <div class="landing-content">
+            <h1 class="landing-title">sebelum lanjut, masukkkin password dulu yaa sayangkuu</h1>
+            <div class="pin-container" id="pinContainer">
+                <p class="pin-label">masukkin password dulu sayang buat lanjut baca isinya</p>
+                <div class="pin-inputs" id="pinInputsContainer">
+                    <input type="password" class="pin-input" maxlength="1" data-index="0" inputmode="numeric" placeholder="•">
+                    <input type="password" class="pin-input" maxlength="1" data-index="1" inputmode="numeric" placeholder="•">
+                    <input type="password" class="pin-input" maxlength="1" data-index="2" inputmode="numeric" placeholder="•">
+                    <input type="password" class="pin-input" maxlength="1" data-index="3" inputmode="numeric" placeholder="•">
+                    <input type="password" class="pin-input" maxlength="1" data-index="4" inputmode="numeric" placeholder="•">
+                    <input type="password" class="pin-input" maxlength="1" data-index="5" inputmode="numeric" placeholder="•">
+                </div>
+                <p class="pin-error" id="pinError" style="display: none;">PIN salah, coba lagi</p>
+                <p class="pin-hint" id="pinHint" style="display: none;">💡 Hint: apa hari paling bahagia buat kita berdua?</p>
+                <button class="pin-submit-btn" onclick="validatePin()">Lanjut</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- MAIN CONTAINER (hidden until correct PIN) -->
+    <div class="main-container" id="mainContainer">
+        <!-- 2️⃣ OPENING SECTION -->
+        <section class="opening">
+            <div class="opening-content">
+                <p class="opening-text">ada yang mau aku bilang sayangg, nggak terlalu panjang dan juga ribet kokk, cuma sesuatu yang mau aku kasih ke kamu.</p>
+                <p class="opening-punch" id="openingPunch" data-text="terimakasih buat semuanya yaa sayanggkuu."></p>
+
+                <!-- MUSIC (opsional): tinggal ganti file lagu di src -->
+                <div class="music-card" id="musicMainCard" style="display:none;">
+                    <div class="music-title">lagu buat kamu</div>
+                    <div class="music-subtitle" id="musicMainSubtitle">putar lagunya dulu yaa sayangg biar makin berasa 🫶</div>
+                    <audio class="music-audio" id="musicMain" controls preload="none">
+                        <!-- contoh: <source src="audio/lagu-kita.mp3" type="audio/mpeg"> -->
+                    </audio>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3️⃣ NOSTALGIA SECTION -->
+        <section class="nostalgia">
+            <h2 class="section-title">momen momen aku dan kamu</h2>
+            <div class="memories-grid">
+                <!-- Memory 1 -->
+                <div class="memory-item">
+                    <div class="memory-image">
+                        <img src="images/IMG_20250718_213038.jpg" alt="Momen 1">
+                    </div>
+                    <div class="memory-text">
+                        <h3>awal-awal pacaran</h3>
+                        <p>inget ga kamu?, awal-awal pacaran kita udah sopiput dan ngewarteg bareng xixiixixi.</p>
+                    </div>
+                </div>
+
+                <!-- Memory 2 -->
+                <div class="memory-item">
+                    <div class="memory-image">
+                        <img src="images/momen2.jpg" alt="Momen 2">
+                    </div>
+                    <div class="memory-text">
+                        <h3>kerandoman kita</h3>
+                        <p>aku seneng banget di momen kita lagi clingy clingynya, apalagi kalo aku lagi nonstop peluk sama cium kamuu.</p>
+                    </div>
+                </div>
+
+                <!-- Memory 3 -->
+                <div class="memory-item">
+                    <div class="memory-image">
+                        <img src="images/20260101_004519.jpg" alt="Momen 3">
+                    </div>
+                    <div class="memory-text">
+                        <h3>malam tahun baru</h3>
+                        <p>ini pertama kalinya aku mainin banyak petasan baru, dan aku seneng banget bisa ngelakuin hal-hal baru bareng kamu sayangku.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- NAV TO LETTER PAGE -->
+        <div style="text-align:center; padding: 3rem 1rem;"><a href="letter.html" class="landing-btn" style="padding:0.9rem 2.5rem;">Baca surat aku buat kamu yaa sayangg</a></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

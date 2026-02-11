@@ -1,0 +1,647 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(-45deg, #fff6e9, #f8d7da, #ffe0e6, #fff0f5);
+    background-size: 400% 400%;
+    animation: gradientShift 15s ease infinite;
+    color: #333;
+    line-height: 1.6;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Animated gradient background */
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Floating hearts container */
+.floating-hearts {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
+}
+
+/* Individual floating heart */
+.heart {
+    position: absolute;
+    color: rgba(230, 57, 70, 0.3);
+    animation: floatUp 6s linear infinite;
+    font-size: 20px;
+}
+
+@keyframes floatUp {
+    0% {
+        bottom: -100px;
+        transform: translateX(0) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.4;
+    }
+    90% {
+        opacity: 0.4;
+    }
+    100% {
+        bottom: 100vh;
+        transform: translateX(100px) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* ===== MUSIC PLAYER (MINI) ===== */
+.music-card {
+    max-width: 720px;
+    margin: 1.25rem auto 0;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(6px);
+    border: 1px solid rgba(230, 57, 70, 0.12);
+    border-radius: 14px;
+    padding: 1rem 1.1rem;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.06);
+}
+
+.music-title {
+    font-family: 'Playfair Display', serif;
+    color: #e63946;
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 0.35rem;
+    text-align: center;
+}
+
+.music-subtitle {
+    font-size: 0.9rem;
+    color: #666;
+    text-align: center;
+    margin-bottom: 0.75rem;
+}
+
+.music-audio {
+    width: 100%;
+}
+
+/* ===== LANDING SECTION ===== */
+.landing {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #fff6e9 0%, #f8d7da 50%, #fde8e8 100%);
+    animation: fadeIn 0.8s ease-in;
+}
+
+/* Halaman PIN dibuat mirip dengan landing biar berasa seperti halaman baru */
+.pin-page {
+    min-height: 100vh;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #fff6e9 0%, #f8d7da 50%, #fde8e8 100%);
+    animation: fadeIn 0.8s ease-in;
+}
+
+.landing-content {
+    text-align: center;
+    animation: slideUp 0.8s ease-out 0.2s both;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+.landing-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.3rem, 5vw, 2.5rem);
+    color: #e63946;
+    margin-bottom: 3rem;
+    font-weight: 700;
+    max-width: 600px;
+}
+
+.landing-btn {
+    background: #e63946;
+    color: white;
+    border: none;
+    padding: 1rem 3rem;
+    font-size: 1rem;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 30px rgba(230, 57, 70, 0.3);
+    z-index: 10;
+    white-space: nowrap;
+    display: inline-block;
+}
+
+.landing-btn:hover {
+    background: #d62828;
+    transform: translateY(-2px);
+    box-shadow: 0 15px 40px rgba(230, 57, 70, 0.4);
+}
+
+.landing-btn:active {
+    transform: translateY(0);
+}
+
+/* ===== PIN INPUT STYLING ===== */
+.pin-container {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+.pin-label {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+}
+
+.pin-inputs {
+    display: flex;
+    gap: 0.8rem;
+    justify-content: center;
+    margin-bottom: 2rem;
+    flex-wrap: nowrap;
+}
+
+.pin-input {
+    width: 50px;
+    height: 50px;
+    border: 2px solid #e63946;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #e63946;
+    background: rgba(230, 57, 70, 0.05);
+    transition: all 0.3s ease;
+    font-family: 'Poppins', sans-serif;
+}
+
+.pin-input:focus {
+    outline: none;
+    border-color: #d62828;
+    background: rgba(230, 57, 70, 0.1);
+    box-shadow: 0 0 0 3px rgba(230, 57, 70, 0.2);
+}
+
+.pin-input::placeholder {
+    color: #ddd;
+}
+
+.pin-error {
+    color: #d62828;
+    font-size: 0.9rem;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    animation: shake 0.5s ease-in-out;
+}
+
+.pin-hint {
+    color: #e63946;
+    font-size: 0.95rem;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-style: italic;
+    font-weight: 500;
+    animation: fadeInUp 0.6s ease-out;
+    border-left: 3px solid #e63946;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
+.pin-submit-btn {
+    background: #e63946;
+    color: white;
+    border: none;
+    padding: 0.8rem 2.5rem;
+    font-size: 0.95rem;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 20px rgba(230, 57, 70, 0.25);
+    margin-right: 0.8rem;
+    margin-bottom: 1rem;
+}
+
+.pin-submit-btn:hover {
+    background: #d62828;
+    transform: translateY(-2px);
+    box-shadow: 0 12px 30px rgba(230, 57, 70, 0.35);
+}
+
+.pin-submit-btn:active {
+    transform: translateY(0);
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-10px); }
+    75% { transform: translateX(10px); }
+}
+
+@keyframes shakeIntense {
+    0%, 100% { transform: translateX(0) scale(1); }
+    10% { transform: translateX(-15px) scale(1.02); }
+    20% { transform: translateX(15px) scale(1.02); }
+    30% { transform: translateX(-15px) scale(1.02); }
+    40% { transform: translateX(15px) scale(1.02); }
+    50% { transform: translateX(-10px) scale(1.02); }
+    60% { transform: translateX(10px) scale(1.02); }
+    70% { transform: translateX(-5px) scale(1.01); }
+    80% { transform: translateX(5px) scale(1.01); }
+    90% { transform: translateX(-2px) scale(1); }
+}
+
+.pin-inputs.shake {
+    animation: shakeIntense 0.6s ease-in-out;
+}
+
+.pin-input.shake {
+    background: rgba(214, 40, 40, 0.15) !important;
+    border-color: #d62828 !important;
+}
+
+/* ===== MAIN CONTAINER ===== */
+.main-container {
+    display: none;
+    opacity: 0;
+    animation: fadeIn 0.6s ease-out 0.3s forwards;
+    padding-top: 2rem;
+    padding-bottom: 3rem;
+}
+
+.main-container.visible {
+    display: block !important;
+    opacity: 1;
+}
+
+/* ===== OPENING SECTION ===== */
+.opening {
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6rem 2rem;
+    background: linear-gradient(135deg, #fff6e9 0%, rgba(248, 215, 218, 0.7) 100%);
+}
+
+.opening-content {
+    max-width: 700px;
+    text-align: center;
+    animation: fadeInUp 0.8s ease-out;
+}
+
+.opening-text {
+    font-family: 'Lora', serif;
+    font-size: 1.3rem;
+    color: #555;
+    margin-bottom: 2rem;
+    line-height: 1.8;
+    font-weight: 400;
+}
+
+.opening-punch {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    color: #e63946;
+    font-weight: 700;
+    min-height: 2.6rem; /* prevent layout jump during typing */
+    white-space: pre-wrap;
+}
+
+/* Typing cursor */
+.opening-punch.typing::after {
+    content: '|';
+    display: inline-block;
+    margin-left: 6px;
+    color: #e63946;
+    animation: blink 1s steps(2, start) infinite;
+}
+
+/* ===== SECTION TITLES ===== */
+.section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3rem);
+    color: #e63946;
+    text-align: center;
+    margin-bottom: 3rem;
+    font-weight: 700;
+}
+
+/* ===== NOSTALGIA SECTION ===== */
+.nostalgia {
+    padding: 6rem 2rem;
+    background: #fff;
+    min-height: auto;
+}
+
+.memories-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.memory-item {
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    animation: fadeInUp 0.8s ease-out;
+}
+
+.memory-item:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 40px rgba(230, 57, 70, 0.15);
+}
+
+.memory-image {
+    width: 100%;
+    height: 250px;
+    overflow: hidden;
+    background: linear-gradient(135deg, #f8d7da, #fde8e8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ccc;
+    font-size: 0.9rem;
+}
+
+.memory-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+/* Force images to cover container even if SVGs have internal padding */
+.memory-image img {
+    display: block;
+    object-position: center center;
+    min-width: 100%;
+    min-height: 100%;
+}
+
+.memory-item:hover .memory-image img {
+    transform: scale(1.05);
+}
+
+.memory-text {
+    padding: 1.5rem;
+}
+
+.memory-text h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    color: #e63946;
+    margin-bottom: 0.8rem;
+    font-weight: 700;
+}
+
+.memory-text p {
+    font-size: 0.95rem;
+    color: #666;
+    line-height: 1.7;
+}
+
+/* ===== ROMANTIC SECTION ===== */
+.romantic {
+    padding: 6rem 2rem;
+    background: linear-gradient(135deg, #fff6e9 0%, rgba(248, 215, 218, 0.5) 100%);
+    min-height: auto;
+}
+
+.romantic-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.romantic-text {
+    animation: fadeInUp 0.8s ease-out;
+}
+
+.romantic-text p {
+    font-family: 'Lora', serif;
+    font-size: 1.1rem;
+    color: #555;
+    margin-bottom: 1.8rem;
+    line-height: 1.9;
+    text-align: justify;
+}
+
+.romantic-text p:last-child {
+    margin-bottom: 0;
+}
+
+/* ===== PLAYFUL SECTION ===== */
+.playful {
+    padding: 6rem 2rem;
+    background: #fff;
+    min-height: auto;
+}
+
+.checklist {
+    max-width: 700px;
+    margin: 0 auto 3rem;
+}
+
+.checklist-item {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    animation: fadeInUp 0.8s ease-out;
+}
+
+.checklist-item .check {
+    font-size: 1.5rem;
+    color: #e63946;
+    font-weight: 700;
+    min-width: 30px;
+    display: flex;
+    align-items: center;
+}
+
+.checklist-item p {
+    font-size: 1rem;
+    color: #666;
+    line-height: 1.6;
+}
+
+.ending-cta {
+    display: flex;
+    justify-content: center;
+    margin-top: 3rem;
+}
+
+.playful-btn {
+    background: #e63946;
+    color: white;
+    border: none;
+    padding: 1rem 2.5rem;
+    font-size: 1rem;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 30px rgba(230, 57, 70, 0.3);
+}
+
+.playful-btn:hover {
+    background: #d62828;
+    transform: scale(1.05);
+    box-shadow: 0 15px 40px rgba(230, 57, 70, 0.4);
+}
+
+/* ===== FOOTER ===== */
+.footer {
+    padding: 2rem;
+    text-align: center;
+    background: linear-gradient(135deg, #f8d7da 0%, #fde8e8 100%);
+    color: #666;
+    font-size: 0.95rem;
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes blink {
+    0% { opacity: 1; }
+    49% { opacity: 1; }
+    50% { opacity: 0; }
+    100% { opacity: 0; }
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+    .memories-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .landing-title {
+        font-size: 1.8rem;
+    }
+
+    .opening-text {
+        font-size: 1.1rem;
+    }
+
+    .opening-punch {
+        font-size: 1.4rem;
+    }
+
+    .romantic-text p {
+        font-size: 1rem;
+        text-align: left;
+    }
+}
+
+@media (max-width: 480px) {
+    .landing {
+        padding: 2rem;
+    }
+
+    .landing-title {
+        font-size: 1.5rem;
+        margin-bottom: 2rem;
+    }
+
+    .landing-btn {
+        padding: 0.75rem 1.5rem;
+        font-size: 0.85rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .pin-inputs {
+        gap: 0.4rem;
+    }
+
+    .pin-input {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+    }
+
+    .opening,
+    .nostalgia,
+    .romantic,
+    .playful {
+        padding: 2rem 1rem;
+    }
+
+    .section-title {
+        font-size: 1.5rem;
+        margin-bottom: 2rem;
+    }
+
+    .opening-text {
+        font-size: 1rem;
+    }
+
+    .opening-punch {
+        font-size: 1.2rem;
+    }
+}
